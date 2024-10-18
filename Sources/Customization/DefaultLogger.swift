@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import os.log
+// import os.log
 
 open class DefaultLogger: OPTLogger {
     private static var _logLevel: OptimizelyLogLevel?
@@ -41,16 +41,17 @@ open class DefaultLogger: OPTLogger {
     }
         
     func clog(level: OptimizelyLogLevel, message: String) {
-        var osLogType: OSLogType
+        // var osLogType: OSLogType
         
-        switch level {
-        case .error: osLogType = .error
-        case .info: osLogType = .info
-        case .debug: osLogType = .debug
-        default: osLogType = .default
-        }
+        // switch level {
+        // case .error: osLogType = .error
+        // case .info: osLogType = .info
+        // case .debug: osLogType = .debug
+        // default: osLogType = .default
+        // }
         
-        os_log("[%{public}@] %{public}@", log: .optimizely, type: osLogType, level.name, message)
+        // print("[%{public}@] %{public}@", log: .optimizely, type: osLogType, level.name, message)
+        print("Optimizely log \(level.name): \(message)")
     }
     
     // test support
@@ -60,6 +61,6 @@ open class DefaultLogger: OPTLogger {
     }
 }
 
-extension OSLog {
-    static let optimizely = OSLog(subsystem: "com.optimizely.swift-sdk", category: "OPTIMIZELY")
-}
+// extension OSLog {
+//     static let optimizely = OSLog(subsystem: "com.optimizely.swift-sdk", category: "OPTIMIZELY")
+// }
