@@ -19,7 +19,7 @@ import Foundation
 /**
  * Any logger must implement these following methods.
  */
-@objc public protocol OPTLogger {
+public protocol OPTLogger {
 
     /// The log level the Logger is initialized with.
     static var logLevel: OptimizelyLogLevel { get set }
@@ -75,8 +75,7 @@ extension OPTLogger {
         return message
     }
 }
-
-@objc public class OPTLoggerFactory: NSObject {
+public class OPTLoggerFactory: NSObject {
     
     class func getLogger() -> OPTLogger {
         if let logger = HandlerRegistryService.shared.injectLogger() {

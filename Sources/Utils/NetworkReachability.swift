@@ -15,7 +15,6 @@
 //
 
 import Foundation
-import Network
 
 class NetworkReachability {
     
@@ -53,32 +52,32 @@ class NetworkReachability {
     init(maxContiguousFails: Int? = nil) {
         self.maxContiguousFails = maxContiguousFails ?? NetworkReachability.defaultMaxContiguousFails
      
-        if #available(macOS 10.14, iOS 12.0, watchOS 5.0, tvOS 12.0, *) {
-            
-            // NOTE: test with real devices only (simulator not updating properly)
-
-            self.monitor = NWPathMonitor()
-            
-            (monitor as! NWPathMonitor).pathUpdateHandler = { [weak self] (path: NWPath) -> Void in
-                // "Reachability path: satisfied (Path is satisfied), interface: en0, ipv4, ipv6, dns, expensive, constrained"
-                // "Reachability path: unsatisfied (No network route)"
-                // print("Reachability path: \(path)")
-                
-                // this task runs in sync queue. set private variable (instead of isConnected to avoid deadlock)
-                self?.connected = (path.status == .satisfied)
-            }
-            
-            (monitor as! NWPathMonitor).start(queue: queue)
-        }
+//        if #available(macOS 10.14, iOS 12.0, watchOS 5.0, tvOS 12.0, *) {
+//            
+//            // NOTE: test with real devices only (simulator not updating properly)
+//
+//            self.monitor = NWPathMonitor()
+//            
+//            (monitor as! NWPathMonitor).pathUpdateHandler = { [weak self] (path: NWPath) -> Void in
+//                // "Reachability path: satisfied (Path is satisfied), interface: en0, ipv4, ipv6, dns, expensive, constrained"
+//                // "Reachability path: unsatisfied (No network route)"
+//                // print("Reachability path: \(path)")
+//                
+//                // this task runs in sync queue. set private variable (instead of isConnected to avoid deadlock)
+//                self?.connected = (path.status == .satisfied)
+//            }
+//            
+//            (monitor as! NWPathMonitor).start(queue: queue)
+//        }
     }
     
     func stop() {
-        if #available(macOS 10.14, iOS 12.0, watchOS 5.0, tvOS 12.0, *) {
-            guard let monitor = monitor as? NWPathMonitor else { return }
-
-            monitor.pathUpdateHandler = nil
-            monitor.cancel()
-        }
+//        if #available(macOS 10.14, iOS 12.0, watchOS 5.0, tvOS 12.0, *) {
+//            guard let monitor = monitor as? NWPathMonitor else { return }
+//
+//            monitor.pathUpdateHandler = nil
+//            monitor.cancel()
+//        }
     }
     
     func updateNumContiguousFails(isError: Bool) {

@@ -17,7 +17,7 @@
 import Foundation
 
 /// Enum representing notification types.
-@objc public enum NotificationType: Int {
+public enum NotificationType: Int {
     case activate = 1
     case track
     case datafileChange
@@ -118,7 +118,7 @@ public protocol OPTNotificationCenter {
     
 }
 
-@objc(OPTNotificationCenter) public protocol ObjcOPTNotificationCenter {
+public protocol ObjcOPTNotificationCenter {
     /**
      Add an activate notification listener to the notification center.
      - Parameter activateListener: Notification to add.

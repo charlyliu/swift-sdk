@@ -17,7 +17,7 @@
 import Foundation
 
 /// Options controlling audience segments.
-@objc public enum OptimizelySegmentOption: Int {
+public enum OptimizelySegmentOption: Int {
     // ignore cache (save/lookup)
     case ignoreCache
     // reset cache

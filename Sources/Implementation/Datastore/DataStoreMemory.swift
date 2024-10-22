@@ -81,13 +81,13 @@ public class DataStoreMemory<T>: BackgroundingCallbacks, OPTDataStore where T: C
         }
     }
     
-    @objc func applicationDidEnterBackground() {
+    func applicationDidEnterBackground() {
         if let data = self.data {
             self.save(forKey: dataStoreName, value: data as Any)
         }
     }
 
-    @objc func applicationDidBecomeActive() {
+    func applicationDidBecomeActive() {
         self.load(forKey: dataStoreName)
     }
 }

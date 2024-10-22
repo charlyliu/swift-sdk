@@ -21,7 +21,7 @@ import WatchKit
 #elseif os(macOS)
 import Cocoa
 #else
-import UIKit
+import Foundation
 #endif
 
 class Utils {
@@ -45,38 +45,41 @@ class Utils {
     }
     
     static var osVersion: String {
-        #if os(watchOS)
-        return WKInterfaceDevice.current().systemVersion
-        #elseif os(macOS)
-        return ProcessInfo().operatingSystemVersionString
-        #else
-        return UIDevice.current.systemVersion
-        #endif
+//        #if os(watchOS)
+//        return WKInterfaceDevice.current().systemVersion
+//        #elseif os(macOS)
+//        return ProcessInfo().operatingSystemVersionString
+//        #else
+//        return UIDevice.current.systemVersion
+//        #endif
+        return "N/A"
     }
     
     static var deviceModel: String {
-        #if os(watchOS)
-        return WKInterfaceDevice.current().model
-        #elseif os(macOS)
+//        #if os(watchOS)
+//        return WKInterfaceDevice.current().model
+//        #elseif os(macOS)
+//        return "N/A"
+//        #else
+//        return UIDevice.current.model
+//        #endif
         return "N/A"
-        #else
-        return UIDevice.current.model
-        #endif
     }
     
     static var deviceType: String {
         // UIUserInterfaceIdiom is an alternative solution, but some (.mac, etc) behaves in an unexpected way.
-        #if os(iOS)
-        return (UIDevice.current.userInterfaceIdiom == .phone) ? "Phone" : "Tablet"
-        #elseif os(tvOS)
-        return "Smart TV"
-        #elseif os(macOS)
-        return "PC"
-        #elseif os(watchOS)
-        return "Watch"
-        #else
-        return "Other"
-        #endif
+//        #if os(iOS)
+//        return (UIDevice.current.userInterfaceIdiom == .phone) ? "Phone" : "Tablet"
+//        #elseif os(tvOS)
+//        return "Smart TV"
+//        #elseif os(macOS)
+//        return "PC"
+//        #elseif os(watchOS)
+//        return "Watch"
+//        #else
+//        return "Other"
+//        #endif
+        return "N/A"
     }
 
     private static let jsonEncoder = JSONEncoder()
@@ -102,7 +105,7 @@ class Utils {
     static func isDoubleType(_ value: Any) -> Bool {
         // Float32 === Float, Float64 ==== Double
         let allSwiftNumTypes: [Any.Type] = [Double.self,
-                                            Float.self, CLongDouble.self]
+                                            Float.self]
         
         let isSwiftNumType = allSwiftNumTypes.contains { $0 == type(of: value) }
 
@@ -172,7 +175,6 @@ class Utils {
         switch value {
         case is Double: finalValue = Double(value as! Double)
         case is Float: finalValue = Double(value as! Float)
-        case is CLongDouble: finalValue = Double(value as! CLongDouble)
         default: finalValue = nil
         }
         
